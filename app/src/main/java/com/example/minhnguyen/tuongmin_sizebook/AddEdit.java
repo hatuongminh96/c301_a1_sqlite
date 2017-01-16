@@ -1,6 +1,5 @@
 package com.example.minhnguyen.tuongmin_sizebook;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -39,9 +38,9 @@ public class AddEdit extends AppCompatActivity {
                     PersonContract.PersonEntry.COLUMN_NAME_INSEAM,
                     PersonContract.PersonEntry.COLUMN_NAME_COMMENT};
             final String selection = PersonContract.PersonEntry.COLUMN_NAME_ID + " = ?";
-            String IDinQ = id;
-            final String[] selectionArgs = { IDinQ };
-            System.out.println(IDinQ);
+            //String IDinQ = id;
+            final String[] selectionArgs = { id };
+            System.out.println(id);
             Cursor cursor = db.query(PersonContract.PersonEntry.TABLE_NAME, projection,selection,selectionArgs,null,null,null);
             cursor.moveToFirst();
 
@@ -50,25 +49,7 @@ public class AddEdit extends AppCompatActivity {
             }
             System.out.println();
 
-            EditText eName = (EditText) findViewById(R.id.name_editText);
-            EditText eDate = (EditText) findViewById(R.id.date_editText);
-            EditText eNeck = (EditText) findViewById(R.id.neck_editText);
-            EditText eBust = (EditText) findViewById(R.id.bust_editText);
-            EditText eChest = (EditText) findViewById(R.id.chest_editText);
-            EditText eWaist = (EditText) findViewById(R.id.waist_editText);
-            EditText eHip = (EditText) findViewById(R.id.hip_editText);
-            EditText eInseam = (EditText) findViewById(R.id.inseam_editText);
-            EditText eComment = (EditText) findViewById(R.id.comment_editText);
-
-            eName.setText(cursor.getString(0));
-            eDate.setText(cursor.getString(1));
-            eNeck.setText(cursor.getString(2));
-            eBust.setText(cursor.getString(3));
-            eChest.setText(cursor.getString(4));
-            eWaist.setText(cursor.getString(5));
-            eHip.setText(cursor.getString(6));
-            eInseam.setText(cursor.getString(7));
-            eComment.setText(cursor.getString(8));
+            setInfo(cursor);
 
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -155,6 +136,29 @@ public class AddEdit extends AppCompatActivity {
             System.out.println("here");
             return null;
         }
+    }
+
+    public void setInfo(Cursor cursor){
+
+        EditText eName = (EditText) findViewById(R.id.name_editText);
+        EditText eDate = (EditText) findViewById(R.id.date_editText);
+        EditText eNeck = (EditText) findViewById(R.id.neck_editText);
+        EditText eBust = (EditText) findViewById(R.id.bust_editText);
+        EditText eChest = (EditText) findViewById(R.id.chest_editText);
+        EditText eWaist = (EditText) findViewById(R.id.waist_editText);
+        EditText eHip = (EditText) findViewById(R.id.hip_editText);
+        EditText eInseam = (EditText) findViewById(R.id.inseam_editText);
+        EditText eComment = (EditText) findViewById(R.id.comment_editText);
+
+        eName.setText(cursor.getString(0));
+        eDate.setText(cursor.getString(1));
+        eNeck.setText(cursor.getString(2));
+        eBust.setText(cursor.getString(3));
+        eChest.setText(cursor.getString(4));
+        eWaist.setText(cursor.getString(5));
+        eHip.setText(cursor.getString(6));
+        eInseam.setText(cursor.getString(7));
+        eComment.setText(cursor.getString(8));
     }
 
 }
